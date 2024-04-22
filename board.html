@@ -1,0 +1,90 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/desktop-template.css">
+    <link rel="stylesheet" href="css/add-task.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/board-media.css">
+    <script src="js/taskStorage.js" defer></script>
+    <script src="js/addTask.js" defer></script>
+    <script src="js/addTaskTemplates.js" defer></script>
+    <script src="js/addTaskSubtask.js" defer></script>
+    <script src="js/addTaskEventlistener.js" defer></script>
+    <script src="js/boardEventlistener.js" defer></script>
+    <script src="js/boardTemplates.js" defer></script>
+    <script src="js/board.js" defer></script>
+    <script src="js/boardTask.js" defer></script>
+    <script src="js/boardSubtask.js" defer></script>
+    <script src="js/contactSelection.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <link rel="shortcut icon" href="assets/img/logo_dark.svg" type="image/x-icon">
+</head>
+
+<body onload="renderBoard()">
+    <div w3-include-html="assets/templates/desktop-template.html"></div>
+    <section class="board-container">
+        <div class="board-header">
+            <div class="header-wrapper">
+                <h1>Board</h1>
+                <img class="btn-mobile" id="add-task-btn-board-mobile" src="assets/img/board_add_mobile.svg"
+                    onclick="openAddTask('todo')">
+            </div>
+            <div class="board-search-container">
+                <div class="board-input-wrapper">
+                    <div id="search-feedback" style="display: none; color: red;">No tasks found</div>
+                    <input oninput="filterTasks()" type="text" id="search-tasks" placeholder="Find task...">
+                    <div class="board-input-icons">
+                        <img id="search-task-icon" src="assets/img/search.svg" alt="">
+                    </div>
+                </div>
+                <button class="btn-desktop" id="add-task-btn-board" onclick="openAddTask('todo')">Add task
+                    <img src="assets/img/plus_white.svg"></button>
+            </div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-header">
+                <div class="progress-column">
+                    <div class="progress-title">
+                        <span>To do</span>
+                        <img onclick="openAddTask('todo')" src="assets/img/plus_button.svg" alt="">
+                    </div>
+                    <div class="dotted-container" id="board-todo-container"></div>
+                    <div class="dotted-container-drag-drop" dropzone="todo"></div>
+                </div>
+                <div class="progress-column">
+                    <div class="progress-title">
+                        <span>In progress</span>
+                        <img onclick="openAddTask('in-progress')" src="assets/img/plus_button.svg" alt="">
+                    </div>
+                    <div class="dotted-container" id="board-in-progress-container"></div>
+                    <div class="dotted-container-drag-drop" dropzone="in-progress"></div>
+                </div>
+                <div class="progress-column">
+                    <div class="progress-title">
+                        <span>Await feedback</span>
+                        <img onclick="openAddTask('feedback')" src="assets/img/plus_button.svg" alt="">
+                    </div>
+                    <div class="dotted-container" id="board-feedback-container"></div>
+                    <div class="dotted-container-drag-drop" dropzone="feedback"></div>
+                </div>
+                <div class="progress-column">
+                    <div class="progress-title">
+                        <span>Done</span>
+                    </div>
+                    <div class="dotted-container" id="board-done-container"></div>
+                    <div class="dotted-container-drag-drop" dropzone="done"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="add-task-container-board">
+
+    </div>
+    <div id="page-overlay"></div>
+    <div id="edit-task-overlay"></div>
+</body>
+
+</html>

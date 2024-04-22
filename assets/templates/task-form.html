@@ -1,0 +1,79 @@
+<div class="add-task-headline">
+    <h1>Add Task</h1>
+</div>
+<form id="add-task" class="add-task">
+    <div class="add-task-left">
+        <div class="left-input-container">
+            <label for="title">Title<span class="red-asterisk">*</span></label>
+            <input required onfocus="resetFieldStyle(this)" type="text" id="title" maxlength="35" placeholder="Enter a title" title="Please enter a title - max 35 characters">
+            <span class="error-message" id="title-error">This field is required</span>
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Enter a description" title="Please enter a description"></textarea>
+            <p class="font-size20">Assigned to</p>
+            <div class="custom-select-wrapper" onclick="toggleDropdown('assigned-to'); renderContacts('assigned-to')">
+                <div id="assigned-to" class="custom-select">
+                    <div class="select-selected">Select contacts to assign</div>
+                    <input oninput="filterContacts()" id="contact-search-input" type="text"
+                        class="contact-search-input select-hide" placeholder="Type to search...">
+                    <img class="dropdown-arrow" id="img-dropdown" src="assets/img/addtask_dropdown.svg">
+                    <div class="select-items select-hide"></div>
+                </div>
+            </div>
+            <div id="assign-contacts"></div>
+        </div>
+        <div class="info-container">
+            <p class="field-required-info"><span class="red-asterisk">*</span> This field is required</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="add-task-right">
+        <div class="right-input-container">
+            <div class="date-input-container">
+                <label for="due-date">Due date<span class="red-asterisk">*</span></label>
+                <input required onfocus="resetFieldStyle(this), this.type='date'" type="text" id="due-date" class="date-input"
+                    placeholder="dd/mm/yyyy" title="Please choose a date in the future">
+                <img class="date-icon" id="date-picker-icon" src="assets/img/addtask_date.svg" alt="">
+                <span class="error-message" id="due-date-error">This field is required</span>
+            </div>
+            <div id="priority">
+                <p class="font-size20">Prio</p>
+                <div class="priority-container">
+                    <div onclick="chooseUrgentPrio()" id="priority-urgent">Urgent <img id="img-urgent"
+                            src="assets/img/addtask_urgent.svg"></div>
+                    <div onclick="chooseMediumPrio()" id="priority-medium">Medium <img id="img-medium"
+                            src="assets/img/addtask_medium.svg"></div>
+                    <div onclick="chooseLowPrio()" id="priority-low">Low <img id="img-low"
+                            src="assets/img/addtask_low.svg"></div>
+                </div>
+            </div>
+            <p class="font-size20 select-category">Category<span class="red-asterisk">*</span></p>
+            <div class="custom-select-wrapper select-category" onclick="toggleDropdown('choose-category'); renderCategories()">
+                <div onfocus="resetFieldStyle(this)" id="choose-category" class="custom-select" data-value="">
+                    <div class="select-selected">Select task category</div>
+                    <img class="dropdown-arrow" id="img-dropdown-cat" src="assets/img/addtask_dropdown.svg">
+                    <div class="select-items select-hide select-cat"></div>
+                </div>
+            </div>
+            <span class="error-message" id="category-error">This field is required</span>
+            <label for="subtasks">Subtasks</label>
+            <div class="add-subtask">
+                <input type="text" id="subtasks" placeholder="Add new subtask">
+                <div id="icon-container">
+                    <img class="icon-plus" src="assets/img/addtask_plus.svg" alt="">
+                </div>
+            </div>
+            <div id="subtask-container"></div>
+            <div class="add-task-buttons">
+                <button onclick="clearForm(); return false" id="clear-btn">Clear<img
+                        src="assets/img/cancel_dark.svg"></button>
+                <button class="add-task-btn-style" onclick="addTask(); return false" id="add-task-btn">Create Task<img
+                        src="assets/img/addtask_check_white.svg"></button>
+            </div>
+        </div>
+    </div>
+</form>
+<div id="notification-wrapper">
+    <div id="notification-container"></div>
+</div>
+<img src="assets/img/cancel_dark.svg" id="close-task-btn" onclick="closeAddTask()">
+<p class="required-span"><span class="red-asterisk">*</span> This field is required</p>
